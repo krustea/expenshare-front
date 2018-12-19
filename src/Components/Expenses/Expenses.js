@@ -30,7 +30,7 @@ class Expenses extends Component {
             <div>
                 <h1>Expenses</h1>
                 <NavLink to={this.props.match.url + '/add'}>Ajouter une dépense</NavLink>
-                <Route path={this.props.match.url + '/add'} component={Form}/>
+                <Route path={this.props.match.url + '/add'} render={props => <Form {...props} slug={this.props.slug} /> }/>
 
 
                 {/* Afficher la liste des dépenses */}
