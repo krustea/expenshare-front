@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import {NavLink, Redirect} from "react-router-dom";
-import Route from "react-router-dom/es/Route";
 import {Input, Button, Container} from "reactstrap";
 
 class Form extends Component {

@@ -4,6 +4,8 @@ import Route from "react-router-dom/es/Route";
 import Form from "./Form";
 import Moment from 'react-moment';
 import {Button, Table} from "reactstrap";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Badge from "react-bootstrap/es/Badge";
 
 class Expenses extends Component {
 
@@ -25,37 +27,56 @@ class Expenses extends Component {
 
     }
 
+    handleDelete(id) {
+        fetch('http://localhost:8888/dcdev/javascript/expenshare/expenshare-back/public/expense/', {
+            method: 'DELETE',
+            body: JSON.stringify({  id: id })
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                alert('Dépense supprimée avec succès !');
+            })
+            .catch(err => alert('Erreur lors de la suppression d une dépense'))
+        ;
+    }
+
+
     render() {
         const expenses= this.state.expense.map(expenses=>
-            <tbody>
-            <tr>
-                <th scope="row">{expenses.title}</th>
-                <th>{expenses.category.label}</th>
-                <th>{expenses.amount}</th>
-                <th><Moment format="YYYY/MM/DD">{expenses.createdAt}</Moment></th>
 
+            <tr key={expenses.id}>
+                <td>{expenses.title}</td>
+                <td>{expenses.category.label}<Badge><FontAwesomeIcon icon={expenses.category.icon}/></Badge></td>
+                <td>{expenses.amount} €</td>
+                <td>{expenses.person.firstname} {expenses.person.lastname}</td>
+                <td><Moment format="YYYY/MM/DD">{expenses.createdAt}</Moment></td>
+                <td><Button onClick={e=>this.handleDelete(expenses.id)}>Supprimer</Button></td>
             </tr>
-            </tbody>
+
 
 
         );
 
         return (
             <div>
-                <h1>Expenses</h1>
+                <h1>Dépense du groupe</h1>
                 <NavLink to={this.props.match.url + '/add'}><Button>Ajouter une dépense</Button></NavLink>
                 <Route path={this.props.match.url + '/add'} render={props => <Form {...props} slug={this.props.slug} /> }/>
 
-                <Table>
+                <Table className="table table-borderless table-dark table-hover text-center">
                     <thead>
                     <tr>
-                        <th>Titre de la dépense</th>
+                        <th scope="row">Titre de la dépense</th>
                         <th>Catégorie</th>
                         <th>Montant</th>
+                        <th>Utilisateur</th>
                         <th>Date de la dépenses</th>
                     </tr>
                     </thead>
+                    <tbody>
                     {expenses}
+                    </tbody>
                 </Table>
                 {/* Afficher la liste des dépenses */}
             </div>
