@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {NavLink, Redirect} from "react-router-dom";
 import Route from "react-router-dom/es/Route";
+import {Input, Button, Container} from "reactstrap";
 
 class Form extends Component {
 
@@ -40,12 +41,12 @@ class Form extends Component {
 
 
         return (
-            <div>
+            <Container>
             <h2>Ajout d'une personne</h2>
-                <input type="text" name="firstname" value={this.state.firstname} onChange={e => this.handleChange(e)} placeholder="firstname"/>
-                <input type="text" name="lastname" value={this.state.lastname} onChange={e => this.handleChange(e)} placeholder="lastname"/>
-                <button onClick={e => this.handleCreate(e)}>Creér</button>
-            </div>
+                <Input type="text" name="firstname" value={this.state.firstname} onChange={e => this.handleChange(e)} placeholder="Prénom"/>
+                <Input type="text" name="lastname" value={this.state.lastname} onChange={e => this.handleChange(e)} placeholder="Nom"/>
+                <Button onClick={e => this.handleCreate(e)}>Creér</Button>
+            </Container>
 
         );
     }

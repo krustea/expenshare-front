@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
+import {Button, Input, Card, CardBody, CardTitle, CardSubtitle, CardText, Container, CardImg} from 'reactstrap';
 import {Redirect} from "react-router-dom";
+import money from "../img/money.jpg"
 
 class Index extends Component {
 
@@ -47,11 +49,21 @@ class Index extends Component {
     }
 
     return (
-      <div>
-        <input type="text" value={this.state.slug} onChange={e => this.handleChange(e)} placeholder="Group ID"/>
-        <button onClick={e => this.handleCreate(e)}>Creér</button>
-        <button onClick={e => this.handleOpen(e)}>Ouvrir</button>
-      </div>
+      <Container>
+        <Card>
+          <CardBody>
+            <CardTitle>Bienvenue sur Expenshare</CardTitle>
+            <CardSubtitle>Fini les prises de tetes avec les dépenses</CardSubtitle>
+            <CardText>Entrez l'identifiant de votre groupe si il est déjà créé, sinon il vous suffit d'en faire un!</CardText>
+
+        <Input type="text" value={this.state.slug} onChange={e => this.handleChange(e)} placeholder="Group ID"/>
+        <Button color="primary" onClick={e => this.handleCreate(e)}>Creér</Button>
+        <Button color="success" onClick={e => this.handleOpen(e)}>Ouvrir</Button>
+            <CardImg  top width="100%" src={money} alt="money" />
+
+          </CardBody>
+        </Card>
+      </Container>
     );
   }
 }

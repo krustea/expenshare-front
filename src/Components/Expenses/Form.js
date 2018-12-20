@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Button, Container, Input} from "reactstrap";
 
 
 class Form extends Component {
@@ -56,20 +57,25 @@ class Form extends Component {
         const persons = this.state.persons.map(per=><option value={per.id} key={per.id}>{per.firstname}{per.lastname}</option>)
         const categories = this.state.categories.map(cat=><option value={cat.id} key={cat.id}>{cat.label}</option>);
         return (
-            <div>
+            <Container>
                 <h2>Ajout d'une dépense</h2>
                 {console.log(this.state)}
-                <input type="text" name="title" value={this.state.title} onChange={e => this.handleChange(e)} placeholder="title"/>
-                <input type="text" name="amount" value={this.state.amount} onChange={e => this.handleChange(e)} placeholder="amount"/>
-                <select name="person" onChange={e=>this.handleChange(e)}>
+                <Input type="text" name="title" value={this.state.title} onChange={e => this.handleChange(e)} placeholder="titre de la dépense"/>
+                <Input type="text" name="amount" value={this.state.amount} onChange={e => this.handleChange(e)} placeholder="Montant"/>
+                <Input type="select" name="person" onChange={e=>this.handleChange(e)}>
+                    <option>Selectionnez une personne</option>
                     {persons}
-                </select>
-                <select name="category" value={this.state.category} onChange={e => this.handleChange(e)}>
+
+                </Input>
+                <Input type="select" name="category" value={this.state.category} onChange={e => this.handleChange(e)}>
+                    <option>Selectionnez une categorie</option>
                     {categories}
-                </select>
-                <button value={this.state.person} onClick={e => this.handleCreate(e)}>Creér</button>
+
+
+                </Input>
+                <Button value={this.state.person} onClick={e => this.handleCreate(e)}>Creér</Button>
                 
-            </div>
+            </Container>
         );
     }
 }

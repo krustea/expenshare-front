@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Form from "./Form"
+import {Button, Table} from 'reactstrap'
 import{NavLink, Route} from "react-router-dom";
 
 class Persons extends Component {
@@ -20,18 +21,31 @@ class Persons extends Component {
     render() {
 
         const persons = this.state.persons.map(person =>
-            <li>
-                {person.firstname}<br/>
-                {person.expenses.length} dépense(s)
-                {person.expenses.reduce((accumulator, expense)=>accumulator + parseFloat(expense.amount), 0)}
-            </li>);
+            <tbody>
+            <tr>
+                <th scope="row">{person.firstname}</th>
+                <th>{person.lastname}</th>
+               <th> {person.expenses.length} dépense(s)</th>
+              <th>  {person.expenses.reduce((accumulator, expense)=>accumulator + parseFloat(expense.amount), 0)}€</th>
+            </tr>
+            </tbody>);
 
         return (
-            <ul><h2>Dépenses</h2>
-                <NavLink to={this.props.match.url + '/add'}>Ajouter une personne</NavLink>
+            <ul><h2>Personnes</h2>
+                <NavLink to={this.props.match.url + '/add'}><Button>Ajouter une personne</Button></NavLink>
                 <Route path={this.props.match.url + '/add'} render={props => <Form {...props} slug={this.props.slug} /> }/>
+                <Table>
+                    <thead>
+                    <tr>
+                        <th>Prenom</th>
+                        <th>nom</th>
+                        <th>nb de dépenses</th>
+                        <th>Montant total des dépenses</th>
+                    </tr>
+                    </thead>
+                    {persons}
+                </Table>
 
-                {persons}
             </ul>
         );
     }

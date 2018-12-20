@@ -16,11 +16,13 @@ class Sharegroup extends Component {
 
         return (
             <div>
-                <h1>{this.props.match.params.slug}</h1>
+
                 <Menu url={this.props.match.url}/>
+                <h1>Groupe : {this.props.match.params.slug}</h1>
+                <Route path={this.props.match.url } exact component={Dashboard}/>
                 <Route path={this.props.match.url + '/expenses'} render={props=><Expenses {...props} slug={this.props.match.params.slug}/>}/>
                 <Route path={this.props.match.url + '/persons'} render={props=><Persons {...props} slug={this.props.match.params.slug}/>}/>
-                <Route path={this.props.match.url } exact component={Dashboard}/>
+
 
             </div>
         );
