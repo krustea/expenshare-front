@@ -64,7 +64,7 @@ class Expenses extends Component {
                 <NavLink to={this.props.match.url + '/add'}><Button>Ajouter une dépense</Button></NavLink>
                 <Route path={this.props.match.url + '/add'} render={props => <Form {...props} slug={this.props.slug} /> }/>
 
-                <Table className="table table-borderless table-dark table-hover text-center">
+                <Table className="table table-borderless table-dark table-hover text-center shadow p-3 mb-5">
                     <thead>
                     <tr>
                         <th scope="row">Titre de la dépense</th>

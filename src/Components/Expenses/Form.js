@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Container, Input} from "reactstrap";
+import {Button, Input} from "reactstrap";
 
 
 class Form extends Component {
@@ -25,7 +25,7 @@ class Form extends Component {
             }
         })
             .then(response => response.json())
-            .then(data => this.setState({persons: data}));
+            .then(data => this.setState({persons: data, person: data[0].id}));
 
 
     }
@@ -54,16 +54,17 @@ class Form extends Component {
 
 
     render() {
-        const persons = this.state.persons.map(per=><option value={per.id} key={per.id}>{per.firstname}{per.lastname}</option>)
+        const persons = this.state.persons.map(per=><option value={per.id} key={per.id}>{per.firstname} {per.lastname}</option>)
         const categories = this.state.categories.map(cat=><option value={cat.id} key={cat.id}>{cat.label}</option>);
         return (
-            <Container>
+            <div>
                 <h2>Ajout d'une dépense</h2>
                 {console.log(this.state)}
                 <Input type="text" name="title" value={this.state.title} onChange={e => this.handleChange(e)} placeholder="titre de la dépense"/>
                 <Input type="text" name="amount" value={this.state.amount} onChange={e => this.handleChange(e)} placeholder="Montant"/>
                 <Input type="select" name="person" onChange={e=>this.handleChange(e)}>
                     <option>Selectionnez une personne</option>
+
                     {persons}
 
                 </Input>
@@ -75,7 +76,7 @@ class Form extends Component {
                 </Input>
                 <Button value={this.state.person} onClick={e => this.handleCreate(e)}>Creér</Button>
                 
-            </Container>
+            </div>
         );
     }
 }

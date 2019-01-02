@@ -3,13 +3,7 @@ import {
     Button,
     Form,
     Input,
-    Card,
-    CardBody,
-    CardTitle,
-    CardSubtitle,
-    CardText,
     Container,
-    CardImg,
     FormGroup
 } from 'reactstrap';
 import {Redirect} from "react-router-dom";
@@ -61,9 +55,10 @@ class Index extends Component {
     }
 
     return (
-        <div className="hp">
-        <Form>
-          <FormGroup >
+        <div className="hp d-flex rounded">
+            <Container className="d-flex justify-content-center align-items-center">
+        <Form className="col-md-6 formperso text-white rounded">
+          <FormGroup className="" >
             <h1>Bienvenue sur Expenshare</h1>
             <h3>Fini les prises de tetes avec les dépenses</h3>
             <p>Entrez l'identifiant de votre groupe si il est déjà créé, sinon il vous suffit d'en faire un!</p>
@@ -74,6 +69,7 @@ class Index extends Component {
 
           </FormGroup>
         </Form>
+            </Container>
         </div>
 
     );

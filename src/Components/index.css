@@ -1,6 +1,10 @@
 .hp{
-    width:auto;
-    height: auto;
+    min-height: 100vh;
+    min-width: 100vh;
     background-image: url("../img/money.jpg");
     background-size: cover;
+}
+
+.formperso{
+    background-color: rgba(0, 0, 0, 0.5);
 }

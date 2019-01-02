@@ -49,7 +49,7 @@ class Persons extends Component {
             <ul><h2>Personnes</h2>
                 <NavLink to={this.props.match.url + '/add'}><Button>Ajouter une personne</Button></NavLink>
                 <Route path={this.props.match.url + '/add'} render={props => <Form {...props} slug={this.props.slug} /> }/>
-                <Table className="table table-borderless table-dark table-hover text-center">
+                <Table className="table table-borderless table-dark table-hover text-center shadow p-3 mb-5">
 
                     <thead>
                     <tr>
